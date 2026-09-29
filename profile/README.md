@@ -10,9 +10,9 @@ Built and maintained by **AI Enablement** in the [Office of Information Technolo
 
 ## What Is an Agent Skill?
 
-A skill is a folder of instructions that an AI agent reads when it needs them. At minimum it's a single `SKILL.md` file: a short description of when the skill applies, followed by the guidance itself. Skills can also carry reference documents, templates, and scripts the agent uses as it works.
+A skill is a folder of instructions that an AI agent reads when it needs them. The common convention is a `SKILL.md` file — a short description of when the skill applies, followed by the guidance itself — alongside any reference documents, templates, or scripts the agent uses as it works. Some skills ship in a specific tool's instruction format instead; the idea is the same either way.
 
-The format is plain Markdown, which makes it portable. The same skill works in Claude, ChatGPT, Gemini, Copilot, Cursor, and other agent tools — the only thing that changes is where you put the folder.
+Because it's all plain Markdown, a skill travels. The same guidance can serve Claude, ChatGPT, Gemini, Copilot, Cursor, and other agent tools — what changes is where the folder goes and what the tool calls it.
 
 Skills are useful when an agent needs context it can't infer:
 
@@ -26,13 +26,21 @@ Without a skill, you re-explain the same context in every conversation. With one
 
 ## Skills in This Organization
 
-### [nd-web-theme-conductor](https://github.com/OIT-AI-Skills/nd-web-theme-conductor)
+Two pairs, each covering one side of a related problem.
 
-Creates and styles content for Conductor websites running the Notre Dame Web Theme v4. The agent composes paste-ready content HTML using official theme components instead of inventing its own markup — so the result matches pages built by ND's web team and survives theme updates.
+### Notre Dame Brand and Web
 
-### [vibe-coding-discipline](https://github.com/OIT-AI-Skills/vibe-coding-discipline)
+**[notre-dame-brand](https://github.com/OIT-AI-Skills/notre-dame-brand)** — Applies the University's masterbrand standards to materials an agent produces: ND Blue and Bright Gold, the Galaxie Polaris typographic system, Academic Mark placement, and brand voice. Built for slides, posters, flyers, social graphics, and donor and event communications. Treats [onmessage.nd.edu](https://onmessage.nd.edu/) as the source of truth, and defers to Notre Dame Creative on stationery, merchandise, athletics co-branding, and custom unit lockups.
 
-Engineering practices for coding agents: branching and pull requests, test coverage, documentation, and the habits that keep agent-assisted work reviewable and maintainable.
+**[nd-web-theme-conductor](https://github.com/OIT-AI-Skills/nd-web-theme-conductor)** — Creates and styles content for Conductor sites running the Notre Dame Web Theme v4. The agent composes paste-ready content HTML from official theme components rather than inventing its own markup, so pages match what ND's web team builds and survive theme updates.
+
+Use the brand skill for materials and the theme skill for anything web-bound; the two hand off to each other at that line.
+
+### AI-Assisted Development
+
+**[vibe-coding-discipline](https://github.com/OIT-AI-Skills/vibe-coding-discipline)** — Engineering practices for coding agents: branching and pull requests, test coverage, and documentation — the habits that keep agent-assisted work reviewable and maintainable.
+
+**[vibe-coding-security-scanner](https://github.com/OIT-AI-Skills/vibe-coding-security-scanner)** — Reviews AI-generated code for the gaps automated scanners tend to miss: data exfiltration paths, secrets handling, and privilege escalation, with language-specific rules for Ruby/Rails and Python and extensible templates for others. Output is deterministic, machine-parseable Markdown, so it runs interactively in an editor or as a step in CI.
 
 More skills are in development.
 
@@ -56,6 +64,7 @@ Or download the ZIP from the repository's green **Code** button.
 | --- | --- |
 | Claude Code | `~/.claude/skills/<skill-name>/` for personal use, or `.claude/skills/<skill-name>/` to share with a repo |
 | Claude (web and desktop) | Upload the folder as a skill in **Settings → Capabilities** |
+| GitHub Copilot / VS Code | The instruction files go under `.github/` in the repo you're working in |
 | Other agents | Check your tool's documentation for its skills or instructions directory |
 
 Support for the skills format is expanding quickly, and each tool names things a little differently. Each repository's own README has current, specific instructions — start there if the table above doesn't match what you see.
@@ -68,7 +77,9 @@ Once installed, most agents load a skill on their own when the work calls for it
 
 > Use the nd-web-theme-conductor skill to build a landing page for our new service.
 
-> Follow vibe-coding-discipline on this branch.
+> Make this slide deck follow the Notre Dame brand skill.
+
+> Follow vibe-coding-discipline on this branch, then run the security scanner over what you wrote.
 
 ---
 
